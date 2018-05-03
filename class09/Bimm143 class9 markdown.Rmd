@@ -2,7 +2,9 @@
 title: "BIMM143 class9"
 author: "Katie Wall"
 date: "1 May 2018"
-output: html_document
+output: 
+  html_document: 
+    keep_md: yes
 ---
 
 ```{r setup, include=FALSE}
