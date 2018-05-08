@@ -8,4 +8,69 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+## PBD Statistics
+
+Download CSV file from PBD databank <http://www.rcsd.org/stats/summary> Read this into R and determine fraction of X ray structure
+
+```{r}
+pdb.stats <- read.csv("Data Export Summary.csv")
+```
+
+Lets calculate something
+
+```{r}
+precent <- (pdb.stats$Total / sum(pdb.stats$Total)) * 100
+names(precent) <- pdb.stats$Experimental.Method
+precent
+```
+
+#working with bio3d
+
+lets load the package
+
+
+```{r}
+library(bio3d)
+```
+Lets list the functions in the package
+
+```{r}
+#lbio3d()
+#example(plot.bio3d)
+```
+read a pdb file 
+```{r}
+pdb <- read.pdb("1hsg")
+pdb
+```
+#question 2
+```{r}
+#pdb <- read.pdb("ihsg")#function 1
+#inds <- atom.select(pdb, "calpha") #function 2
+#pdb$atom[inds$atom, ] #side note
+#trim.pdb # function 3
+#write.pdb # function 4
+```
+
+
+```{r}
+inds <- atom.select(pdb, "calpha")
+inds
+```
+
+check if we have what we want
+
+```{r}
+head(pdb$atom[inds$atom, ])
+```
+
+looks good so lets continue to trim pdb and write it out
+
+```{r}
+ca.pdb <- trim.pdb(pdb, inds = inds)
+ca.pdb
+write.pdb(ca.pdb, file = "calpha_only.pdb")
+```
+
+
 
