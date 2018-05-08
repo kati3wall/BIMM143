@@ -1,0 +1,11 @@
+---
+title: "lecture 11 new rmd"
+author: "Katie Wall"
+date: "8 May 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
