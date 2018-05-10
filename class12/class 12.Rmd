@@ -1,0 +1,33 @@
+---
+title: "class 12"
+author: "Katie Wall"
+date: "10 May 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(bio3d)
+file.name <- get.pdb("1hsg")
+```
+
+```{r}
+#read PDB structure into R
+hiv <- read.pdb(file.name)
+hiv
+```
+select out protein and ligand only
+```{r}
+prot <- trim.pdb(hiv, "protein")
+lig <- trim.pdb(hiv, "ligand")
+```
+
+write out new pdb files so we can use them for docking
+```{r}
+write.pdb(prot, file="1hsg_protein.pdb")
+write.pdb(lig, "1hsg_ligand.pdb")
+```
+
